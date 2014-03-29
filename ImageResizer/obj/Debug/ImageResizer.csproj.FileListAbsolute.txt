@@ -1,0 +1,14 @@
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\ImageResizer.exe.config
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\ImageResizer.exe
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\ImageResizer.pdb
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.dll
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.Imaging.dll
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.Math.dll
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.Vision.dll
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.xml
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.Imaging.xml
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.Math.xml
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\bin\Debug\AForge.Vision.xml
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\obj\Debug\ImageResizer.csprojResolveAssemblyReference.cache
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\obj\Debug\ImageResizer.exe
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ImageResizer\obj\Debug\ImageResizer.pdb
