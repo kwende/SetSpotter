@@ -14,12 +14,23 @@ namespace SetSpotter.Finders
     {
         public static FoundBlobs Find(FoundColorSpaces colorSpaces)
         {
-            FoundBlobs foundBlobs = new FoundBlobs(); 
+            FoundBlobs foundBlobs = new FoundBlobs();
+
+            SobelEdgeDetector edge = new SobelEdgeDetector();
+            Bitmap edges = edge.Apply(colorSpaces.GrayColorSpace);
+
+            Threshold threshold = new Threshold(50);
+            threshold.ApplyInPlace(edges);
 
             BlobCounter blobCounter = new BlobCounter();
-            blobCounter.ProcessImage(colorSpaces.BinaryColorSpace);
-            Blob[] blobs = blobCounter.GetObjectsInformation();
-            foundBlobs.Blobs = blobs.OrderByDescending(m => m.Area).Take(12).ToArray();
+            blobCounter.ProcessImage(edges);
+            foundBlobs.Blobs = blobCounter.GetObjectsInformation().Where(
+                m => m.Rectangle.Width < 80 &&
+                m.Rectangle.Width > 25 &&
+                m.Rectangle.Height < 90 &&
+                m.Rectangle.Height > 50 &&
+                m.Rectangle.Height / (m.Rectangle.Width * 1.0f) > 1.2 &&
+                m.Rectangle.Height / (m.Rectangle.Width * 1.0f) < 2.2).ToArray();
 
             return foundBlobs; 
         }

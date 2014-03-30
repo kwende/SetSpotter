@@ -17,10 +17,24 @@ namespace SetSpotter.Finders
 
             // load bmp
             ret.OriginalColorSpace = (Bitmap)System.Drawing.Image.FromFile(imagePath);
+
             // gray bmp
             ret.GrayColorSpace = (new Grayscale(0.2125, 0.7154, 0.0721)).Apply(ret.OriginalColorSpace);
+
             // threshold
-            ret.BinaryColorSpace = (new Threshold(135)).Apply(ret.GrayColorSpace);
+            float averageBrightness = 0f;
+            float count = 0f;
+            for (int y = 0; y < ret.OriginalColorSpace.Height; y += 10)
+            {
+                for (int x = 0; x < ret.OriginalColorSpace.Width; x += 10)
+                {
+                    averageBrightness += ret.GrayColorSpace.GetPixel(x, y).GetBrightness();
+                    count++;
+                }
+            }
+            averageBrightness /= count; 
+            int computedThreshold = (int)Math.Floor(150 * (averageBrightness / .48f)); 
+            ret.BinaryColorSpace = (new Threshold(computedThreshold).Apply(ret.GrayColorSpace));
 
             return ret; 
         }

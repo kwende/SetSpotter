@@ -34,18 +34,31 @@ namespace SetSpotter
         static void DoIt(string image)
         {
             FoundColorSpaces foundColorSpaces = ColorSpaceFinder.Find(image);
+            FoundBlobs foundBlobs = BlobFinder.Find(foundColorSpaces); 
 
-            Bitmap debugBitmap = foundColorSpaces.OriginalColorSpace.Clone(
-                new Rectangle(0, 0, 
-                    foundColorSpaces.OriginalColorSpace.Width, 
-                    foundColorSpaces.OriginalColorSpace.Height), 
-                    foundColorSpaces.OriginalColorSpace.PixelFormat); 
+            using (Graphics g = Graphics.FromImage(foundColorSpaces.OriginalColorSpace))
+            {
+                foreach (Blob blob in foundBlobs.Blobs)
+                {
+                    g.DrawRectangle(new Pen(Brushes.Red, 1), blob.Rectangle); 
+                }
+            }
 
-            FoundBlobs foundBlobs = BlobFinder.Find(foundColorSpaces);
-            BlobFinder.DebugDrawBlobs(debugBitmap, foundBlobs);
+            foundColorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\test.bmp");
 
-            debugBitmap.Save(@"C:\users\brush\desktop\debug\" + Path.GetFileNameWithoutExtension(image) + "_debug.bmp");
 
+            return; 
+
+            //Threshold threshold = new Threshold();
+            //threshold.Apply(edges).Save(@"c:\users\brush\desktop\test.bmp"); 
+
+            //HoughLineTransformation transform = new HoughLineTransformation(); 
+            //transform.ProcessImage(edges);
+            //HoughLine[] lines = transform.GetMostIntensiveLines(48); 
+
+            return; 
+            //foundColorSpaces.GrayColorSpace.Save(@"c:\users\brush\desktop\test.bmp");
+            //return; 
             return; 
             //// load bmp
             //Bitmap originalBmp = (Bitmap)System.Drawing.Image.FromFile(image);
