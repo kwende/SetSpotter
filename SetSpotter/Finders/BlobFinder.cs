@@ -32,6 +32,8 @@ namespace SetSpotter.Finders
                 m.Rectangle.Height / (m.Rectangle.Width * 1.0f) > 1.2 &&
                 m.Rectangle.Height / (m.Rectangle.Width * 1.0f) < 2.2).ToArray();
 
+            foundBlobs.BlobCounter = blobCounter;
+
             return foundBlobs; 
         }
 

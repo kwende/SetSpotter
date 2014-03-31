@@ -10,5 +10,6 @@ namespace SetSpotter.FoundData
     public class FoundBlobs
     {
         public Blob[] Blobs { get; set; }
+        public BlobCounter BlobCounter { get; set; }
     }
 }

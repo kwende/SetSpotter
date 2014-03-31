@@ -40,12 +40,17 @@ namespace SetSpotter
             {
                 foreach (Blob blob in foundBlobs.Blobs)
                 {
-                    g.DrawRectangle(new Pen(Brushes.Red, 1), blob.Rectangle); 
+                    FoundBlobType foundType = BlobTypeFinder.Find(blob, foundColorSpaces, foundBlobs.BlobCounter);
+                    if (foundType.ShapeType == ShapeTypeEnum.Diamond)
+                    {
+                        g.DrawString("Diamond", new Font("Arial", 13, FontStyle.Bold), Brushes.Red, new PointF(blob.Rectangle.X, blob.Rectangle.Y)); 
+                    }
+
+                    //g.DrawRectangle(new Pen(Brushes.Red, 1), blob.Rectangle); 
                 }
             }
 
-            foundColorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\test.bmp");
-
+            foundColorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\debug\" + Path.GetFileName(image)); 
 
             return; 
 
