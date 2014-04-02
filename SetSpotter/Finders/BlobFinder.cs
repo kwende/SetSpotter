@@ -24,7 +24,7 @@ namespace SetSpotter.Finders
 
             BlobCounter blobCounter = new BlobCounter();
             blobCounter.ProcessImage(edges);
-            foundBlobs.Blobs = blobCounter.GetObjectsInformation().Where(
+            foundBlobs.Blobs = blobCounter.GetObjects(colorSpaces.GrayColorSpace, false).Where(
                 m => m.Rectangle.Width < 80 &&
                 m.Rectangle.Width > 25 &&
                 m.Rectangle.Height < 90 &&
