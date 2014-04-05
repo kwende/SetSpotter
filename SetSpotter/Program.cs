@@ -34,166 +34,21 @@ namespace SetSpotter
         static void DoIt(string image)
         {
             FoundColorSpaces foundColorSpaces = ColorSpaceFinder.Find(image);
-            FoundBlobs foundBlobs = BlobFinder.Find(foundColorSpaces); 
+            FoundBlobs foundBlobs = BlobFinder.Find(foundColorSpaces, 80, 25, 90, 50, 1.2, 2.2); 
 
             using (Graphics g = Graphics.FromImage(foundColorSpaces.OriginalColorSpace))
             {
                 foreach (Blob blob in foundBlobs.Blobs)
                 {
-                    AxisAlignedBlobFinder.Find(blob, foundBlobs.BlobCounter, foundColorSpaces); 
-                    FoundBlobType foundType = BlobTypeFinder.Find(blob, foundColorSpaces, foundBlobs.BlobCounter);
-                    if (foundType.ShapeType == ShapeTypeEnum.Diamond)
-                    {
-                        g.DrawString("Diamond", new Font("Arial", 13, FontStyle.Bold), Brushes.Red, new PointF(blob.Rectangle.X, blob.Rectangle.Y)); 
-                    }
+                    Bitmap axisAlignedBitmap = AxisAlignedBitmapFinder.Find(blob, foundBlobs.BlobCounter, foundColorSpaces);
+                    FoundColorSpaces colorSpacesForShape = ColorSpaceFinder.Find(axisAlignedBitmap);
+                    FoundBlobs shapeBlob = BlobFinder.FindLargest(colorSpacesForShape);
 
-                    //g.DrawRectangle(new Pen(Brushes.Red, 1), blob.Rectangle); 
+                    FoundBlobType foundType = BlobTypeFinder.Find(shapeBlob.Blobs[0], colorSpacesForShape, shapeBlob.BlobCounter);
                 }
             }
 
-            foundColorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\debug\" + Path.GetFileName(image)); 
-
             return; 
-
-            //Threshold threshold = new Threshold();
-            //threshold.Apply(edges).Save(@"c:\users\brush\desktop\test.bmp"); 
-
-            //HoughLineTransformation transform = new HoughLineTransformation(); 
-            //transform.ProcessImage(edges);
-            //HoughLine[] lines = transform.GetMostIntensiveLines(48); 
-
-            return; 
-            //foundColorSpaces.GrayColorSpace.Save(@"c:\users\brush\desktop\test.bmp");
-            //return; 
-            return; 
-            //// load bmp
-            //Bitmap originalBmp = (Bitmap)System.Drawing.Image.FromFile(image);
-            //// gray bmp
-            //Bitmap grayBmp = (new Grayscale(0.2125, 0.7154, 0.0721)).Apply(originalBmp);
-            //// threshold
-            //Bitmap thresholded = (new Threshold(135)).Apply(grayBmp);
-
-            //BlobCounter blobCounter = new BlobCounter();
-            //blobCounter.ProcessImage(thresholded);
-            //Blob[] blobs = blobCounter.GetObjectsInformation();
-
-            //blobs = blobs.OrderByDescending(m => m.Area).Take(12).ToArray();
-
-            //using (Graphics g = Graphics.FromImage(originalBmp))
-            //{
-            //    foreach (Blob blob in blobs)
-            //    {
-            //        List<IntPoint> points = blobCounter.GetBlobsEdgePoints(blob);
-            //        List<IntPoint> corners = PointsCloud.FindQuadrilateralCorners(points);
-
-            //        //float averageR = 0, averageG = 0, averageB = 0;
-            //        //float count = 0; 
-            //        List<IntPoint> cardPixels = new List<IntPoint>();
-            //        for (int y = blob.Rectangle.Y; y < blob.Rectangle.Y + blob.Rectangle.Height; y++)
-            //        {
-            //            for (int x = blob.Rectangle.X; x < blob.Rectangle.X + blob.Rectangle.Width; x++)
-            //            {
-            //                if (pnpoly(corners.Count, corners.Select(m => (float)m.X).ToArray(),
-            //                    corners.Select(m => (float)m.Y).ToArray(), x, y))
-            //                {
-            //                    cardPixels.Add(new IntPoint(x, y));
-            //                }
-            //            }
-            //        }
-
-            //        Bitmap shapeBlobBmp = new Bitmap(blob.Rectangle.Width, blob.Rectangle.Height, PixelFormat.Format24bppRgb);
-            //        float averageR = 0, averageG = 0, averageB = 0;
-            //        float count = 0;
-            //        foreach (IntPoint pixel in cardPixels)
-            //        {
-            //            if (thresholded.GetPixel(pixel.X, pixel.Y).GetBrightness() != 1.0f)
-            //            {
-            //                Color color = originalBmp.GetPixel(pixel.X, pixel.Y);
-            //                averageR += color.R;
-            //                averageG += color.G;
-            //                averageB += color.B;
-            //                count++;
-
-            //                const int FillSize = 2;
-            //                for (int y1 = pixel.Y - FillSize; y1 < pixel.Y + FillSize; y1++)
-            //                {
-            //                    for (int x1 = pixel.X - FillSize; x1 < pixel.X + FillSize; x1++)
-            //                    {
-            //                        shapeBlobBmp.SetPixel(x1 - blob.Rectangle.Left, y1 - blob.Rectangle.Top, Color.White);
-            //                    }
-            //                }
-            //            }
-            //        }
-
-            //        //GaussianBlur blur = new GaussianBlur(2, 3); 
-            //        //blur.ApplyInPlace(shapeBlobBmp);
-
-            //        //shapeBlobBmp.Save(@"c:\users\brush\desktop\image.bmp"); 
-
-            //        averageR /= count;
-            //        averageG /= count;
-
-            //        if (averageR > 150)
-            //        {
-            //            g.DrawString("RED", new Font("Arial", 18, FontStyle.Bold), Brushes.Red, blob.Rectangle.X, blob.Rectangle.Y);
-            //        }
-            //        else if (averageG > 100)
-            //        {
-            //            g.DrawString("GREEN", new Font("Arial", 18, FontStyle.Bold), Brushes.Green, blob.Rectangle.X, blob.Rectangle.Y);
-            //        }
-            //        else
-            //        {
-            //            g.DrawString("PURPLE", new Font("Arial", 18, FontStyle.Bold), Brushes.Purple, blob.Rectangle.X, blob.Rectangle.Y);
-            //        }
-
-            //        shapeBlobBmp = Grayscale.CommonAlgorithms.BT709.Apply(shapeBlobBmp);
-
-            //        BlobCounter shapeBlobCounter = new BlobCounter();
-            //        shapeBlobCounter.ProcessImage(shapeBlobBmp);
-            //        Blob[] shapeBlobs = shapeBlobCounter.GetObjects(shapeBlobBmp, false).Where(m => m.Area > 50).ToArray();
-
-            //        g.DrawString(shapeBlobs.Length.ToString(), new Font("Arial", 18, FontStyle.Bold), Brushes.Purple, blob.Rectangle.X, blob.Rectangle.Y + 18);
-
-            //        Blob sampleBlob = shapeBlobs[0];
-            //        List<IntPoint> sampleBlobEdgePoints = shapeBlobCounter.GetBlobsEdgePoints(sampleBlob);
-            //        SimpleShapeChecker simpleShapeChecker = new SimpleShapeChecker();
-            //        bool isQuad = simpleShapeChecker.IsQuadrilateral(sampleBlobEdgePoints);
-
-            //        Console.WriteLine(isQuad.ToString());
-
-            //        if (isQuad)
-            //        {
-            //            g.DrawString("Diamond", new Font("Arial", 18, FontStyle.Bold), Brushes.Purple, blob.Rectangle.X, blob.Rectangle.Y + 36);
-            //        }
-            //        else
-            //        {
-            //            sampleBlob.Image.ToManagedImage().Save(@"c:\users\brush\desktop\shape.bmp");
-            //            // compute a normalized euclidean distance from the centroid of the blob to the edge points, use this
-            //            // to form a histogram which can hopefully be used as a means of final shape classification. 
-            //            AForge.Point centerOfGravity = sampleBlob.CenterOfGravity;
-            //            //File.Delete(@"c:\users\brush\desktop\histogram.csv");
-            //            List<float> distances = new List<float>();
-            //            foreach (IntPoint edgePoint in sampleBlobEdgePoints)
-            //            {
-            //                float distance = centerOfGravity.SquaredDistanceTo(edgePoint);
-            //                distances.Add(distance);
-            //                //File.AppendAllText(@"c:\users\brush\desktop\histogram.csv", distance.ToString() + "\r\n"); 
-            //            }
-            //            float max = distances.Max();
-            //            float[] scaledDistances = distances.Select(m => m / max).ToArray();
-            //            if (scaledDistances.Where(m => m < .2).Count() > 20)
-            //            {
-            //                g.DrawString("Squiggle", new Font("Arial", 18, FontStyle.Bold), Brushes.Purple, blob.Rectangle.X, blob.Rectangle.Y + 36);
-            //            }
-            //            else
-            //            {
-            //                g.DrawString("Pill", new Font("Arial", 18, FontStyle.Bold), Brushes.Purple, blob.Rectangle.X, blob.Rectangle.Y + 36);
-            //            }
-            //        }
-            //    }
-            //}
-
-            //originalBmp.Save(image + "_processed.bmp"); 
         }
 
         static void Main(string[] args)

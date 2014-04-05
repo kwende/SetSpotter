@@ -11,12 +11,12 @@ namespace SetSpotter.Finders
 {
     public static class ColorSpaceFinder
     {
-        public static FoundColorSpaces Find(string imagePath)
+        public static FoundColorSpaces Find(Bitmap bmp)
         {
-            FoundColorSpaces ret = new FoundColorSpaces(); 
+            FoundColorSpaces ret = new FoundColorSpaces();
 
             // load bmp
-            ret.OriginalColorSpace = (Bitmap)System.Drawing.Image.FromFile(imagePath);
+            ret.OriginalColorSpace = bmp;
 
             // gray bmp
             ret.GrayColorSpace = (new Grayscale(0.2125, 0.7154, 0.0721)).Apply(ret.OriginalColorSpace);
@@ -32,11 +32,16 @@ namespace SetSpotter.Finders
                     count++;
                 }
             }
-            averageBrightness /= count; 
-            int computedThreshold = (int)Math.Floor(150 * (averageBrightness / .48f)); 
+            averageBrightness /= count;
+            int computedThreshold = (int)Math.Floor(150 * (averageBrightness / .48f));
             ret.BinaryColorSpace = (new Threshold(computedThreshold).Apply(ret.GrayColorSpace));
 
             return ret; 
+        }
+
+        public static FoundColorSpaces Find(string imagePath)
+        {
+            return Find((Bitmap)System.Drawing.Image.FromFile(imagePath)); 
         }
     }
 }

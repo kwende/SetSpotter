@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace SetSpotter.Finders
 {
-    public static class AxisAlignedBlobFinder
+    public static class AxisAlignedBitmapFinder
     {
         private static int Count = 0; 
 
@@ -35,6 +35,8 @@ namespace SetSpotter.Finders
                 for (int x = startLeft.X; x <= endRight.X; x++)
                 {
                     blobPoints.Add(new IntPoint(x - blob.Rectangle.Left, startLeft.Y - blob.Rectangle.Top));
+                    bmp.SetPixel(x - blob.Rectangle.Left, startLeft.Y - blob.Rectangle.Top,
+                        colorSpaces.OriginalColorSpace.GetPixel(x, startLeft.Y)); 
                 }
             }
 
@@ -89,28 +91,17 @@ namespace SetSpotter.Finders
             double radians = System.Math.Asin(xHat[0, 0]);
             double degrees = radians * (180 / System.Math.PI); 
 
-
-
             // Why doesn't this work?
             //DenseMatrix A = DenseMatrix.OfArray(aData);
             //DenseVector b = new DenseVector(bData);
             //Matrix<double> xHat = (A.TransposeThisAndMultiply(A).Inverse() * A.Transpose() * b).ToColumnMatrix();
 
-            Bitmap bmpRead = colorSpaces.OriginalColorSpace.Clone(blob.Rectangle, colorSpaces.OriginalColorSpace.PixelFormat);
-
             RotateBicubic rotate = new RotateBicubic(-degrees);
-            bmpRead = rotate.Apply(bmpRead); 
+            bmp = rotate.Apply(bmp); 
 
-            //using (Graphics g = Graphics.FromImage(bmpRead))
-            //{
-            //    g.DrawLine(Pens.Red,
-            //        new System.Drawing.Point((int)(xHat[0, 0] * -100 + centroidX), (int)(xHat[1, 0] * -100 + centroidY)),
-            //        new System.Drawing.Point((int)(xHat[0, 0] * 100 + centroidX), (int)(xHat[1, 0] * 100 + centroidY)));
-            //}
+            //bmp.Save(@"C:\Users\brush\Desktop\debug\" + (Count++).ToString() + ".bmp");
 
-            bmpRead.Save(@"C:\Users\brush\Desktop\debug\" + (Count++).ToString() + ".bmp");
-
-            return null;
+            return bmp;
         }
     }
 }

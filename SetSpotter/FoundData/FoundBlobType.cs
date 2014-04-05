@@ -13,5 +13,6 @@ namespace SetSpotter.FoundData
         public FillTypeEnum FillType { get; set; }
         public ColorTypeEnum ColorType { get; set; }
         public Blob Blob { get; set; }
+        public double ScaledArea { get; set; }
     }
 }
