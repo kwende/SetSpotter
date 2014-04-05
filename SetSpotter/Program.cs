@@ -40,6 +40,7 @@ namespace SetSpotter
             {
                 foreach (Blob blob in foundBlobs.Blobs)
                 {
+                    AxisAlignedBlobFinder.Find(blob, foundBlobs.BlobCounter, foundColorSpaces); 
                     FoundBlobType foundType = BlobTypeFinder.Find(blob, foundColorSpaces, foundBlobs.BlobCounter);
                     if (foundType.ShapeType == ShapeTypeEnum.Diamond)
                     {

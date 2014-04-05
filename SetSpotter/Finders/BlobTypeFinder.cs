@@ -17,13 +17,6 @@ namespace SetSpotter.Finders
     {
         public static FoundBlobType Find(Blob blob, FoundColorSpaces foundColorSpaces, BlobCounter blobCounter)
         {
-            foundColorSpaces.OriginalColorSpace.Clone(
-                blob.Rectangle, 
-                foundColorSpaces.OriginalColorSpace.PixelFormat).Save(
-                @"c:\users\brush\desktop\blobs\" + Guid.NewGuid().ToString().Replace("-", "") + ".bmp");
- 
-            return new FoundBlobType(); 
-
             FoundBlobType foundBlobType = new FoundBlobType();
 
             List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
