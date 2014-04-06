@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResizer", "ImageResize
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namer", "Namer\Namer.csproj", "{1F18F16B-684D-411B-B0AF-94EA9989B5A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorInspector", "ColorInspector\ColorInspector.csproj", "{903D82C9-119E-4698-AD4A-5B23DE999DB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1F18F16B-684D-411B-B0AF-94EA9989B5A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F18F16B-684D-411B-B0AF-94EA9989B5A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F18F16B-684D-411B-B0AF-94EA9989B5A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{903D82C9-119E-4698-AD4A-5B23DE999DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{903D82C9-119E-4698-AD4A-5B23DE999DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{903D82C9-119E-4698-AD4A-5B23DE999DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{903D82C9-119E-4698-AD4A-5B23DE999DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

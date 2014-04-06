@@ -1,0 +1,6 @@
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ColorInspector\bin\Debug\ColorInspector.exe.config
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ColorInspector\bin\Debug\ColorInspector.exe
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ColorInspector\bin\Debug\ColorInspector.pdb
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ColorInspector\obj\Debug\ColorInspector.csprojResolveAssemblyReference.cache
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ColorInspector\obj\Debug\ColorInspector.exe
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\ColorInspector\obj\Debug\ColorInspector.pdb

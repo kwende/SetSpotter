@@ -1136,6 +1136,7 @@
     <Content Include="separatedshapes\squiggle\purple__11e967f9a535456389857d19f3445216.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="separatedshapes\squiggle\purple__12a2cbbca2bb4f90a69f73e59d400c1f.bmp" />
     <Content Include="separatedshapes\squiggle\purple__1336a2e104c941b69c5c209d4af46601.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1242,9 +1243,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="separatedshapes\squiggle\red__03272fa5d5f842a8a2f9a27b4c0be848.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="separatedshapes\squiggle\red__12a2cbbca2bb4f90a69f73e59d400c1f.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="separatedshapes\squiggle\red__13e894e20d714533a3bdf21663cc67f2.bmp">
