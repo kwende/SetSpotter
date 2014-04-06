@@ -99,8 +99,6 @@ namespace SetSpotter.Finders
             RotateBicubic rotate = new RotateBicubic(-degrees);
             bmp = rotate.Apply(bmp); 
 
-            //bmp.Save(@"C:\Users\brush\Desktop\debug\" + (Count++).ToString() + ".bmp");
-
             return bmp;
         }
     }

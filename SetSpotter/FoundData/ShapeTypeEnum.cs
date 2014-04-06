@@ -8,9 +8,9 @@ namespace SetSpotter.FoundData
 {
     public enum ShapeTypeEnum
     {
+        NotAType,
         Squiggle,
         Pill,
         Diamond,
-        NotAType
     }
 }

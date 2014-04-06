@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Finders\AxisAlignedBlobFinder.cs" />
     <Compile Include="Finders\BlobFinder.cs" />
-    <Compile Include="Finders\BlobTypeFinder.cs" />
+    <Compile Include="Finders\ShapeTypeFinder.cs" />
     <Compile Include="Finders\ColorSpaceFinder.cs" />
     <Compile Include="Finders\EdgeFinder.cs" />
     <Compile Include="FoundData\ColorTypeEnum.cs" />
