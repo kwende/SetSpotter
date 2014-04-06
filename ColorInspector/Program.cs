@@ -54,7 +54,45 @@ namespace ColorInspector
 
         static void Main(string[] args)
         {
-            
+            string[] squiggles = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\squiggle\");
+            string[] pills = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\pill\");
+            string[] diamonds = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\diamonds\");
+
+            List<string> all = new List<string>();
+            all.AddRange(squiggles);
+            all.AddRange(pills);
+            all.AddRange(diamonds);
+
+            int bucketSize = 15;
+            foreach (string file in all.Where(m => Path.GetFileName(m).StartsWith("red")))
+            {
+                int[] histogram = new int[360 / bucketSize];
+
+                using (Bitmap bmp = (Bitmap)Bitmap.FromFile(file))
+                {
+                    for (int y = 0; y < bmp.Height; y++)
+                    {
+                        for (int x = 0; x < bmp.Width; x++)
+                        {
+                            Color color = bmp.GetPixel(x, y);
+                            int hue = (int)(color.GetHue() / bucketSize);
+                            histogram[hue]++;
+                        }
+                    }
+                }
+
+                File.Delete(@"c:\users\brush\desktop\hist.csv");
+                for (int c = 0; c < histogram.Length; c++)
+                {
+                    File.AppendAllText(@"c:\users\brush\desktop\hist.csv", histogram[c].ToString() + "\r\n");
+                    //if (histogram[c] < minHistogram[c])
+                    //{
+                    //    minHistogram[c] = histogram[c];
+                    //}
+                }
+
+                Console.WriteLine("Poop"); 
+            }
         }
     }
 }
