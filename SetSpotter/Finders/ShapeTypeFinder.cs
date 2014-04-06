@@ -65,16 +65,16 @@ namespace SetSpotter.Finders
                 }
             }
 
-            if(numberRed > numberGreen)
-            {
-                foundBlobType.ColorType = ColorTypeEnum.Red;
-                resizedBitmap.Save(@"c:\users\brush\desktop\red\" + (Count++).ToString() + ".bmp"); 
-            }
-            else if(numberGreen > 0)
-            {
-                foundBlobType.ColorType = ColorTypeEnum.Green;
-                resizedBitmap.Save(@"c:\users\brush\desktop\green\" + (Count++).ToString() + ".bmp"); 
-            }
+            //if(numberRed > numberGreen)
+            //{
+            //    foundBlobType.ColorType = ColorTypeEnum.Red;
+            //    resizedBitmap.Save(@"c:\users\brush\desktop\red\" + (Count++).ToString() + ".bmp"); 
+            //}
+            //else if(numberGreen > 0)
+            //{
+            //    foundBlobType.ColorType = ColorTypeEnum.Green;
+            //    resizedBitmap.Save(@"c:\users\brush\desktop\green\" + (Count++).ToString() + ".bmp"); 
+            //}
 
             double total = (resizedBitmap.Width * resizedBitmap.Height * 1.0);
 
