@@ -124,16 +124,17 @@ namespace SetSpotter.Finders
                     {
                         foundBlobType.StrippedBitmap.SetPixel(x, y, color);
                         float hue = color.GetHue();
+                        float sat = color.GetSaturation(); 
                         foundBlobType.Histogram[(int)hue]++;
-                        if (hue < 17 && hue > 329)
+                        if (hue < 17 || hue > 329)
                         {
                             redPixel++;
                         }
-                        else if (hue > 105 && hue < 185)
+                        else if (hue > 90 && hue < 187)
                         {
                             greenPixel++;
                         }
-                        else if (hue > 200 && hue < 329)
+                        else if (hue < 31 || hue > 200)
                         {
                             purplePixel++;
                         }

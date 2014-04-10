@@ -11,3 +11,16 @@ C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\Namer\obj\Debug\
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\Namer\obj\Debug\Namer.csproj.GenerateResource.Cache
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\Namer\obj\Debug\Namer.exe
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\Namer\obj\Debug\Namer.pdb
+C:\repos\SetSpotter\SetSpotter\Namer\bin\Debug\Namer.exe.config
+C:\repos\SetSpotter\SetSpotter\Namer\bin\Debug\Namer.exe
+C:\repos\SetSpotter\SetSpotter\Namer\bin\Debug\Namer.pdb
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\Namer.csprojResolveAssemblyReference.cache
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\MainWindow.baml
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\MainWindow.g.cs
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\App.g.cs
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\Namer_MarkupCompile.cache
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\Namer.g.resources
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\Namer.Properties.Resources.resources
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\Namer.csproj.GenerateResource.Cache
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\Namer.exe
+C:\repos\SetSpotter\SetSpotter\Namer\obj\Debug\Namer.pdb

@@ -7,6 +7,7 @@ using SetSpotter.FoundData;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -62,50 +63,20 @@ namespace ColorInspector
 
         static void Main(string[] args)
         {
-            Bitmap bmp = (Bitmap)Bitmap.FromFile(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\diamonds\red__6714dc3d2605484b9416e6ff7a8c09a1.bmp");
-
-            List<Color> brightnessList = new List<Color>();
-            for (int y = 0; y < bmp.Height; y++)
+            foreach (string file in Directory.GetFiles(@"C:\repos\SetSpotter\SetSpotter\SetSpotter\testimages"))
             {
-                if (y == 0 || y == bmp.Height - 1)
+                FoundColorSpaces foundColorSpaces = ColorSpaceFinder.Find(file);
+                FoundBlobs foundBlobs = BlobFinder.Find(foundColorSpaces, 80, 25, 90, 50, 1.2, 2.2);
+
+                string destinationDirectory = @"C:\Users\brush\Desktop\out\" + Path.GetFileNameWithoutExtension(file) + "\\";
+                Directory.CreateDirectory(destinationDirectory);
+
+                foreach (Blob blob in foundBlobs.Blobs)
                 {
-                    for (int x = 0; x < bmp.Width; x++)
-                    {
-                        brightnessList.Add(bmp.GetPixel(x, y));
-                    }
-                }
-                else
-                {
-                    brightnessList.Add(bmp.GetPixel(0, y));
-                    brightnessList.Add(bmp.GetPixel(bmp.Width - 1, y));
+                    foundColorSpaces.OriginalColorSpace.Clone(blob.Rectangle, PixelFormat.Format24bppRgb).Save(
+                         destinationDirectory + Guid.NewGuid().ToString() + ".bmp");
                 }
             }
-            Color[] whites = brightnessList.OrderByDescending(m => m.GetBrightness()).Take(10).ToArray();
-            double averageR = whites.Average(m => m.R);
-            double averageG = whites.Average(m => m.G);
-            double averageB = whites.Average(m => m.B);
-
-            double mean = (averageR + averageG + averageB) / 3.0;
-            double gScaler = mean / averageG;
-            double bScaler = mean / averageB;
-            double rScaler = mean / averageR;
-
-            bmp.Save(@"c:\users\brush\desktop\original.bmp"); 
-            for (int y = 0; y < bmp.Height; y++)
-            {
-                for (int x = 0; x < bmp.Width; x++)
-                {
-                    Color c = bmp.GetPixel(x, y);
-                    HSL hsl = HSL.FromRGB(new RGB(c.R, c.G, c.B));
-                    if (hsl.Hue < 0) hsl.Hue = 0;
-                    RGB rgb = hsl.ToRGB();
-                    byte b = (byte)Math.Floor(rgb.Blue * bScaler);
-                    byte g = (byte)Math.Floor(rgb.Green * gScaler);
-                    byte r = (byte)Math.Floor(rgb.Red * rScaler);
-                    bmp.SetPixel(x, y, Color.FromArgb(r, g, b));
-                }
-            }
-            bmp.Save(@"C:\users\brush\desktop\test.bmp");
 
             return;
         }

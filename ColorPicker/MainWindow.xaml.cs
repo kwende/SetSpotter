@@ -51,7 +51,7 @@ namespace ColorPicker
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _files = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\testimages");
+            _files = Directory.GetFiles(@"C:\Users\brush\Desktop\out\set1_resized");
             string currentFile = _files[_fileIndex];
 
             _bmp = (Bitmap)Bitmap.FromFile(currentFile);
@@ -69,30 +69,67 @@ namespace ColorPicker
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Save("red", _color); 
+            //Save("red", _color); 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Save("green", _color); 
+            //Save("green", _color); 
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Save("purple", _color); 
+            //Save("purple", _color); 
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            FullImage.Source = null;
+            _bmp.Dispose(); 
+
+            string color = "";
+            if (Purple.IsChecked == true) color = "purple";
+            if (Red.IsChecked == true) color = "red";
+            if (Green.IsChecked == true) color = "green";
+
+            string shape = "";
+            if (Squiggle.IsChecked == true) shape = "squiggle";
+            if (Diamond.IsChecked == true) shape = "diamond";
+            if (Pill.IsChecked == true) shape = "pill";
+
+            string fill = "";
+            if (Hallow.IsChecked == true) fill = "hallow";
+            if (Solid.IsChecked == true) fill = "solid";
+            if (Shaded.IsChecked == true) fill = "shaded";
+
+            string currentFile = _files[_fileIndex];
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(currentFile);
+            string directory = System.IO.Path.GetDirectoryName(currentFile);
+
+            string newName = System.IO.Path.Combine(@"C:\Users\brush\Desktop\done", string.Format("{0}-{1}-{2}-{3}.bmp", color, shape, fill, fileName));
+            File.Copy(currentFile, newName); 
+
             _fileIndex++;
             if (_files.Length > _fileIndex)
             {
-                string currentFile = _files[_fileIndex];
+                string nextFile = _files[_fileIndex];
 
-                _bmp = (Bitmap)Bitmap.FromFile(currentFile);
-                ImageSource src = new BitmapImage(new Uri(currentFile));
+                _bmp = (Bitmap)Bitmap.FromFile(nextFile);
+                ImageSource src = new BitmapImage(new Uri(nextFile));
                 FullImage.Source = src;
             }
+
+            Purple.IsChecked = false;
+            Red.IsChecked = false;
+            Green.IsChecked = false;
+
+            Squiggle.IsChecked = false;
+            Diamond.IsChecked = false;
+            Pill.IsChecked = false;
+
+            Hallow.IsChecked = false;
+            Solid.IsChecked = false;
+            Shaded.IsChecked = false; 
         }
     }
 }

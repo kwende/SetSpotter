@@ -49,7 +49,8 @@ namespace SetSpotter.Finders
             double averageG = whites.Average(m => m.G);
             double averageB = whites.Average(m => m.B);
 
-            double mean = (averageR + averageG + averageB) / 3.0;
+            //double mean = (averageR + averageG + averageB) / 3.0;
+            double mean = 255; //
             double gScaler = mean / averageG;
             double bScaler = mean / averageB;
             double rScaler = mean / averageR;
@@ -59,15 +60,33 @@ namespace SetSpotter.Finders
             {
                 for (int x = 0; x < bmp.Width; x++)
                 {
+                    //Color c = bmp.GetPixel(x, y);
+                    ////HSL hsl = HSL.FromRGB(new RGB(c.R, c.G, c.B));
+                    ////if (hsl.Hue < 0) hsl.Hue = 0;
+                    ////RGB rgb = hsl.ToRGB();
+                    //byte b = (byte)Math.Floor(c.B * bScaler);
+                    //byte g = (byte)Math.Floor(c.G * gScaler);
+                    //byte r = (byte)Math.Floor(c.R * rScaler);
+
+                    //ret.CorrectedRGBColorSpace.SetPixel(x, y, Color.FromArgb(r, g, b));
+
                     Color c = bmp.GetPixel(x, y);
                     HSL hsl = HSL.FromRGB(new RGB(c.R, c.G, c.B));
                     if (hsl.Hue < 0) hsl.Hue = 0;
                     RGB rgb = hsl.ToRGB();
-                    byte b = (byte)Math.Floor(rgb.Blue * bScaler);
-                    byte g = (byte)Math.Floor(rgb.Green * gScaler);
-                    byte r = (byte)Math.Floor(rgb.Red * rScaler);
+                    double correctedBlue = rgb.Blue * bScaler;
+                    if (correctedBlue > 255) correctedBlue = 255;
+                    byte b = (byte)Math.Floor(correctedBlue);
 
-                    ret.CorrectedRGBColorSpace.SetPixel(x, y, Color.FromArgb(r, g, b));
+                    byte g = (byte)Math.Floor(rgb.Green * gScaler);
+                    double correctedGreen = rgb.Green * gScaler;
+                    if (correctedGreen > 255) correctedGreen = 255;
+
+                    byte r = (byte)Math.Floor(rgb.Red * rScaler);
+                    double correctedRed = rgb.Red * rScaler;
+                    if (correctedRed > 255) correctedRed = 255;
+
+                    ret.CorrectedRGBColorSpace.SetPixel(x, y, Color.FromArgb((byte)correctedRed, (byte)correctedGreen, (byte)correctedBlue));
                 }
             }
 

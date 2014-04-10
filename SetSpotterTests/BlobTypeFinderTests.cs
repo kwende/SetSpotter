@@ -27,9 +27,15 @@ namespace SetSpotterTests
         [TestMethod]
         public void TestColors()
         {
-            string[] squiggles = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\squiggle\");
-            string[] pills = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\pill\");
-            string[] diamonds = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\diamonds\");
+            //FoundColorSpaces colorSpaces = ColorSpaceFinder.Find(@"C:\repos\SetSpotter\SetSpotter\SetSpotter\separatedshapes\pill\green__3f4727bfe8a147189bd3f37c6dfc7349.bmp");
+            //colorSpaces.CorrectedRGBColorSpace.Save(@"c:\users\brush\desktop\corrected.bmp"); 
+
+            //return; 
+
+
+            string[] squiggles = Directory.GetFiles(@"separatedshapes\squiggle\");
+            string[] pills = Directory.GetFiles(@"separatedshapes\pill\");
+            string[] diamonds = Directory.GetFiles(@"separatedshapes\diamonds\");
 
             List<string> all = new List<string>();
             all.AddRange(squiggles);
@@ -52,68 +58,76 @@ namespace SetSpotterTests
 
                 FoundBlobType foundBlobType = ShapeTypeFinder.Find(bmp, colorSpaces);
 
-                switch (color)
-                {
-                    case "red":
-                        numRed++;
-                        for (int c = 0; c < redHistogram.Length; c++)
-                        {
-                            redHistogram[c] += foundBlobType.Histogram[c];
-                        }
-                        break;
-                    case "green":
-                        numGreen++;
-                        for (int c = 0; c < greenHistogram.Length; c++)
-                        {
-                            greenHistogram[c] += foundBlobType.Histogram[c];
-                        }
-                        break;
-                    case "purple":
-                        numPurple++;
-                        for (int c = 0; c < purpleHistogram.Length; c++)
-                        {
-                            purpleHistogram[c] += foundBlobType.Histogram[c];
-                        }
-                        break;
-                }
+                //switch (color)
+                //{
+                //    case "red":
+                //        numRed++;
+                //        for (int c = 0; c < redHistogram.Length; c++)
+                //        {
+                //            redHistogram[c] += foundBlobType.Histogram[c];
+                //        }
+                //        break;
+                //    case "green":
+                //        numGreen++;
+                //        for (int c = 0; c < greenHistogram.Length; c++)
+                //        {
+                //            greenHistogram[c] += foundBlobType.Histogram[c];
+                //        }
+                //        break;
+                //    case "purple":
+                //        numPurple++;
+                //        for (int c = 0; c < purpleHistogram.Length; c++)
+                //        {
+                //            purpleHistogram[c] += foundBlobType.Histogram[c];
+                //        }
+                //        break;
+                //}
 
                 switch (color)
                 {
                     case "red":
-                        foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
-                        colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
-                        Assert.AreEqual(ColorTypeEnum.Red, foundBlobType.ColorType);
+                        colorSpaces.OriginalColorSpace.Save(@"C:\users\brush\desktop\red\" + Guid.NewGuid().ToString() + ".bmp"); 
+                        //foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
+                        //colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
+                        //Assert.AreEqual(ColorTypeEnum.Red, foundBlobType.ColorType);
                         break;
                     case "green":
-                        foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
-                        colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
-                        Assert.AreEqual(ColorTypeEnum.Green, foundBlobType.ColorType);
+                        colorSpaces.OriginalColorSpace.Save(@"C:\users\brush\desktop\green\" + Guid.NewGuid().ToString() + ".bmp"); 
+                        //foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
+                        //colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
+                        //Assert.AreEqual(ColorTypeEnum.Green, foundBlobType.ColorType);
                         break;
                     case "purple":
-                        foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
-                        colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
-                        Assert.AreEqual(ColorTypeEnum.Purple, foundBlobType.ColorType);
+                        colorSpaces.OriginalColorSpace.Save(@"C:\users\brush\desktop\purple\" + Guid.NewGuid().ToString() + ".bmp"); 
+                        //foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
+                        //colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
+                        //Assert.AreEqual(ColorTypeEnum.Purple, foundBlobType.ColorType);
                         break;
                 }
+
+                //if (color == "turd")
+                //{
+                //    for (int c = 0; c < foundBlobType.Histogram.Length; c++)
+                //    {
+                //        //redHistogram[c] = Math.Round(redHistogram[c] / numRed);
+                //        File.AppendAllText(@"c:\users\brush\desktop\error.csv", foundBlobType.Histogram[c].ToString() + "\r\n");
+                //    }
+
+                //    //for (int c = 0; c < purpleHistogram.Length; c++)
+                //    //{
+                //    //    //purpleHistogram[c] = Math.Round(purpleHistogram[c] / numPurple);
+                //    //    File.AppendAllText(@"c:\users\brush\desktop\purple.csv", purpleHistogram[c].ToString() + "\r\n");
+                //    //}
+
+                //    //for (int c = 0; c < greenHistogram.Length; c++)
+                //    //{
+                //    //    //greenHistogram[c] = Math.Round(greenHistogram[c] / numGreen);
+                //    //    File.AppendAllText(@"c:\users\brush\desktop\green.csv", greenHistogram[c].ToString() + "\r\n");
+                //    //}
+                //}
             }
 
-            //for (int c = 0; c < redHistogram.Length; c++)
-            //{
-            //    redHistogram[c] = Math.Round(redHistogram[c] / numRed);
-            //    File.AppendAllText(@"c:\users\brush\desktop\red.csv", redHistogram[c].ToString() + "\r\n");
-            //}
 
-            //for (int c = 0; c < purpleHistogram.Length; c++)
-            //{
-            //    purpleHistogram[c] = Math.Round(purpleHistogram[c] / numPurple);
-            //    File.AppendAllText(@"c:\users\brush\desktop\purple.csv", purpleHistogram[c].ToString() + "\r\n");
-            //}
-
-            //for (int c = 0; c < greenHistogram.Length; c++)
-            //{
-            //    greenHistogram[c] = Math.Round(greenHistogram[c] / numGreen);
-            //    File.AppendAllText(@"c:\users\brush\desktop\green.csv", greenHistogram[c].ToString() + "\r\n");
-            //}
 
             //File.Delete(@"C:\users\brush\desktop\test.csv");
             //using (FileStream fs = File.OpenWrite(@"C:\users\brush\desktop\test.csv"))
