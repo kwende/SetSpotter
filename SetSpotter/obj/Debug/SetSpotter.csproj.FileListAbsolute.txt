@@ -385,9 +385,6 @@ C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\D
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\green__fc7f5f147ff94131a002eab42fb23948.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\green__fcc205a8409c41b4b2733f12b6797487.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\green__fe2efddeffe44220a17519b12f24fb40.bmp
-C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__00063ed120c346c293a6bccdebf1822c.bmp
-C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__0c4a8d04d0004dc9b08989d8a2d36bee.bmp
-C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__11e967f9a535456389857d19f3445216.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__1336a2e104c941b69c5c209d4af46601.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__19d8b0470e374df0bdeeaf4aa60adad7.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__2642a916464243faa2705bd276a67e1b.bmp
@@ -397,7 +394,6 @@ C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\D
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__47b0167c079e43198e34aa1e46625d2e.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__4b84e390c6b2491a958d169bd958cfc6.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__4f831ddb108e4845b033741dd8bba99c.bmp
-C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__50f61ed4988b4bfa809ccf0cb34b78b5.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__59a70857d30d49a590e9242d64d57205.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__5d8bfa61aaf24cbcbe13455d7aa4b1b9.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\purple__5eb0f5d2775c439383156108150aee03.bmp
@@ -427,15 +423,12 @@ C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\D
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__13e894e20d714533a3bdf21663cc67f2.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__14592c1fe6164f709307156087b8bae3.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__1858ea509b48493eabeb74aa36989e2d.bmp
-C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__261e819a5f5c4e238b7a7f1cf3175d71.bmp
-C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__2da537fd20384bcbaf3b3d7d374f425a.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__326ee3a8698843a6b8fda3364e67363b.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__37c883d3366e4822a5771b2af479e2c8.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__391fe62ad8ca428999bee2d89b348295.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__3eb99bfe0cb844469c2b4d34be22ab06.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__3ffe448394ee4b589680345670345505.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__46a29a4e8e934356a7789ebcd63918ce.bmp
-C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__497f6953b4194dc9bcd78e86c231ac96.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__4d51fa6b522b4b7198f5527b4882c60a.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__4f2b490f81cc44c58aa6ec90320795b6.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__4fc2e770576041d8a69b733756b0d0a0.bmp
@@ -467,3 +460,9 @@ C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\D
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__f66fd601d47d4d879df10a9b44d0b25e.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__fdb48e10e6274a0f9290cea14ec30740.bmp
 C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__fe1956a6d39942d880fdf39fa8d57aaa.bmp
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__00063ed120c346c293a6bccdebf1822c.bmp
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__0c4a8d04d0004dc9b08989d8a2d36bee.bmp
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__261e819a5f5c4e238b7a7f1cf3175d71.bmp
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__2da537fd20384bcbaf3b3d7d374f425a.bmp
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__497f6953b4194dc9bcd78e86c231ac96.bmp
+C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\bin\Debug\separatedshapes\squiggle\red__50f61ed4988b4bfa809ccf0cb34b78b5.bmp

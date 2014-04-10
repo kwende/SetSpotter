@@ -41,7 +41,7 @@ namespace SetSpotter
                 foreach (Blob blob in foundBlobs.Blobs)
                 {
                     Bitmap axisAlignedBitmap = AxisAlignedBitmapFinder.Find(blob, foundBlobs.BlobCounter, foundColorSpaces);
-                    FoundBlobType foundType = ShapeTypeFinder.Find(axisAlignedBitmap);
+                    FoundBlobType foundType = ShapeTypeFinder.Find(axisAlignedBitmap, foundColorSpaces);
                 }
             }
 

@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Accord.MachineLearning.VectorMachines;
+using Accord.MachineLearning.VectorMachines.Learning;
+using AForge.Imaging;
+using AForge.Imaging.Filters;
+using SetSpotter.Finders;
+using SetSpotter.FoundData;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -14,6 +20,7 @@ namespace ColorInspector
         {
             string[] files = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\diamonds");
             Dictionary<int, int> histogram = new Dictionary<int, int>();
+
             foreach (string file in files)
             {
                 string fileName = Path.GetFileName(file);
@@ -39,6 +46,7 @@ namespace ColorInspector
                     }
                 }
             }
+
             for (int c = 0; c < 360; c++)
             {
                 if (histogram.ContainsKey(c))
@@ -54,45 +62,52 @@ namespace ColorInspector
 
         static void Main(string[] args)
         {
-            string[] squiggles = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\squiggle\");
-            string[] pills = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\pill\");
-            string[] diamonds = Directory.GetFiles(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\diamonds\");
+            Bitmap bmp = (Bitmap)Bitmap.FromFile(@"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\SetSpotter\separatedshapes\diamonds\red__6714dc3d2605484b9416e6ff7a8c09a1.bmp");
 
-            List<string> all = new List<string>();
-            all.AddRange(squiggles);
-            all.AddRange(pills);
-            all.AddRange(diamonds);
-
-            int bucketSize = 15;
-            foreach (string file in all.Where(m => Path.GetFileName(m).StartsWith("red")))
+            List<Color> brightnessList = new List<Color>();
+            for (int y = 0; y < bmp.Height; y++)
             {
-                int[] histogram = new int[360 / bucketSize];
-
-                using (Bitmap bmp = (Bitmap)Bitmap.FromFile(file))
+                if (y == 0 || y == bmp.Height - 1)
                 {
-                    for (int y = 0; y < bmp.Height; y++)
+                    for (int x = 0; x < bmp.Width; x++)
                     {
-                        for (int x = 0; x < bmp.Width; x++)
-                        {
-                            Color color = bmp.GetPixel(x, y);
-                            int hue = (int)(color.GetHue() / bucketSize);
-                            histogram[hue]++;
-                        }
+                        brightnessList.Add(bmp.GetPixel(x, y));
                     }
                 }
-
-                File.Delete(@"c:\users\brush\desktop\hist.csv");
-                for (int c = 0; c < histogram.Length; c++)
+                else
                 {
-                    File.AppendAllText(@"c:\users\brush\desktop\hist.csv", histogram[c].ToString() + "\r\n");
-                    //if (histogram[c] < minHistogram[c])
-                    //{
-                    //    minHistogram[c] = histogram[c];
-                    //}
+                    brightnessList.Add(bmp.GetPixel(0, y));
+                    brightnessList.Add(bmp.GetPixel(bmp.Width - 1, y));
                 }
-
-                Console.WriteLine("Poop"); 
             }
+            Color[] whites = brightnessList.OrderByDescending(m => m.GetBrightness()).Take(10).ToArray();
+            double averageR = whites.Average(m => m.R);
+            double averageG = whites.Average(m => m.G);
+            double averageB = whites.Average(m => m.B);
+
+            double mean = (averageR + averageG + averageB) / 3.0;
+            double gScaler = mean / averageG;
+            double bScaler = mean / averageB;
+            double rScaler = mean / averageR;
+
+            bmp.Save(@"c:\users\brush\desktop\original.bmp"); 
+            for (int y = 0; y < bmp.Height; y++)
+            {
+                for (int x = 0; x < bmp.Width; x++)
+                {
+                    Color c = bmp.GetPixel(x, y);
+                    HSL hsl = HSL.FromRGB(new RGB(c.R, c.G, c.B));
+                    if (hsl.Hue < 0) hsl.Hue = 0;
+                    RGB rgb = hsl.ToRGB();
+                    byte b = (byte)Math.Floor(rgb.Blue * bScaler);
+                    byte g = (byte)Math.Floor(rgb.Green * gScaler);
+                    byte r = (byte)Math.Floor(rgb.Red * rScaler);
+                    bmp.SetPixel(x, y, Color.FromArgb(r, g, b));
+                }
+            }
+            bmp.Save(@"C:\users\brush\desktop\test.bmp");
+
+            return;
         }
     }
 }

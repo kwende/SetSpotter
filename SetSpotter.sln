@@ -13,6 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namer", "Namer\Namer.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorInspector", "ColorInspector\ColorInspector.csproj", "{903D82C9-119E-4698-AD4A-5B23DE999DB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker", "ColorPicker\ColorPicker.csproj", "{E829303F-C7BC-473F-A861-6DD007DF5F9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A6828AB-95E9-48AF-9FF2-630D995C91AA}"
+	ProjectSection(SolutionItems) = preProject
+		numbers.csv = numbers.csv
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +46,10 @@ Global
 		{903D82C9-119E-4698-AD4A-5B23DE999DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{903D82C9-119E-4698-AD4A-5B23DE999DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{903D82C9-119E-4698-AD4A-5B23DE999DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E829303F-C7BC-473F-A861-6DD007DF5F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E829303F-C7BC-473F-A861-6DD007DF5F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E829303F-C7BC-473F-A861-6DD007DF5F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E829303F-C7BC-473F-A861-6DD007DF5F9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

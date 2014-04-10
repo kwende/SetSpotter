@@ -1,8 +1,10 @@
-﻿using AForge.Imaging.Filters;
+﻿using AForge.Imaging;
+using AForge.Imaging.Filters;
 using SetSpotter.FoundData;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,33 +17,66 @@ namespace SetSpotter.Finders
         {
             FoundColorSpaces ret = new FoundColorSpaces();
 
-            // load bmp
             ret.OriginalColorSpace = bmp;
+            ret.GrayColorSpace = Grayscale.CommonAlgorithms.BT709.Apply(ret.OriginalColorSpace);
 
-            // gray bmp
-            ret.GrayColorSpace = (new Grayscale(0.2125, 0.7154, 0.0721)).Apply(ret.OriginalColorSpace);
+            CannyEdgeDetector edges = new CannyEdgeDetector();
+            Threshold threshold = new Threshold();
+            ret.Edges = threshold.Apply(edges.Apply(ret.GrayColorSpace));
 
-            // threshold
-            float averageBrightness = 0f;
-            float count = 0f;
-            for (int y = 0; y < ret.OriginalColorSpace.Height; y += 10)
+            ret.BinaryColorSpace = threshold.Apply(ret.GrayColorSpace);
+
+            ret.CorrectedRGBColorSpace = new Bitmap(bmp.Width, bmp.Height, PixelFormat.Format24bppRgb); 
+            List<Color> brightnessList = new List<Color>();
+            for (int y = 0; y < bmp.Height; y++)
             {
-                for (int x = 0; x < ret.OriginalColorSpace.Width; x += 10)
+                if (y == 0 || y == bmp.Height - 1)
                 {
-                    averageBrightness += ret.GrayColorSpace.GetPixel(x, y).GetBrightness();
-                    count++;
+                    for (int x = 0; x < bmp.Width; x++)
+                    {
+                        brightnessList.Add(bmp.GetPixel(x, y));
+                    }
+                }
+                else
+                {
+                    brightnessList.Add(bmp.GetPixel(0, y));
+                    brightnessList.Add(bmp.GetPixel(bmp.Width - 1, y));
                 }
             }
-            averageBrightness /= count;
-            int computedThreshold = (int)Math.Floor(150 * (averageBrightness / .48f));
-            ret.BinaryColorSpace = (new Threshold(computedThreshold).Apply(ret.GrayColorSpace));
 
-            return ret; 
+            Color[] whites = brightnessList.OrderByDescending(m => m.GetBrightness()).Take(10).ToArray();
+            double averageR = whites.Average(m => m.R);
+            double averageG = whites.Average(m => m.G);
+            double averageB = whites.Average(m => m.B);
+
+            double mean = (averageR + averageG + averageB) / 3.0;
+            double gScaler = mean / averageG;
+            double bScaler = mean / averageB;
+            double rScaler = mean / averageR;
+
+            //bmp.Save(@"c:\users\brush\desktop\original.bmp");
+            for (int y = 0; y < bmp.Height; y++)
+            {
+                for (int x = 0; x < bmp.Width; x++)
+                {
+                    Color c = bmp.GetPixel(x, y);
+                    HSL hsl = HSL.FromRGB(new RGB(c.R, c.G, c.B));
+                    if (hsl.Hue < 0) hsl.Hue = 0;
+                    RGB rgb = hsl.ToRGB();
+                    byte b = (byte)Math.Floor(rgb.Blue * bScaler);
+                    byte g = (byte)Math.Floor(rgb.Green * gScaler);
+                    byte r = (byte)Math.Floor(rgb.Red * rScaler);
+
+                    ret.CorrectedRGBColorSpace.SetPixel(x, y, Color.FromArgb(r, g, b));
+                }
+            }
+
+            return ret;
         }
 
         public static FoundColorSpaces Find(string imagePath)
         {
-            return Find((Bitmap)System.Drawing.Image.FromFile(imagePath)); 
+            return Find((Bitmap)System.Drawing.Image.FromFile(imagePath));
         }
     }
 }

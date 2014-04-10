@@ -11,6 +11,9 @@ namespace SetSpotter.FoundData
     {
         public Bitmap OriginalColorSpace { get; set; }
         public Bitmap GrayColorSpace { get; set; }
+        public Bitmap Edges { get; set; }
         public Bitmap BinaryColorSpace { get; set; }
+
+        public Bitmap CorrectedRGBColorSpace { get; set; }
     }
 }

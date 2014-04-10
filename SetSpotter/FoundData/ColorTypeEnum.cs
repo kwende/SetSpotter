@@ -8,6 +8,7 @@ namespace SetSpotter.FoundData
 {
     public enum ColorTypeEnum
     {
+        Unknown,
         Purple,
         Green,
         Red
