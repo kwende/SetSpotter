@@ -1,0 +1,19 @@
+﻿Build started 4/13/2014 8:57:39 PM.
+     1>Project "C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\LibSVMWrapper\LibSVMWrapper.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\LibSVMWrapper.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib LibSVMWrapper.cpp
+         LibSVMWrapper.cpp
+     1>c:\users\brush\documents\visual studio 2012\projects\setspotter\libsvmwrapper\LibSVMWrapper.h(20): warning C4461: 'LibSVMWrapper::Predict' : this class has a finalizer '!LibSVMWrapper::Predict' but no destructor '~LibSVMWrapper::Predict'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\Debug\LibSVMWrapper.dll" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\Debug\LibSVMWrapper.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
+         Debug\AssemblyInfo.obj
+         Debug\LibSVMWrapper.obj
+         Debug\Stdafx.obj
+         Debug\svm.obj
+         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         LibSVMWrapper.vcxproj -> C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\Debug\LibSVMWrapper.dll
+     1>Done Building Project "C:\Users\brush\Documents\Visual Studio 2012\Projects\SetSpotter\LibSVMWrapper\LibSVMWrapper.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.10

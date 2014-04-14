@@ -78,6 +78,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LibSVMWrapper\LibSVMWrapper.vcxproj">
+      <Project>{e4fe4536-f25c-4b39-8839-a1b5b92e8486}</Project>
+      <Name>LibSVMWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SetSpotter\SetSpotter.csproj">
       <Project>{a7580f0f-4cd3-4f06-aa33-b1bf3e96b159}</Project>
       <Name>SetSpotter</Name>

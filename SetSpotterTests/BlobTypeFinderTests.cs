@@ -5,6 +5,8 @@ using SetSpotter.Finders;
 using SetSpotter.FoundData;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Linq;
+using System.Drawing.Imaging;
 
 namespace SetSpotterTests
 {
@@ -27,119 +29,13 @@ namespace SetSpotterTests
         [TestMethod]
         public void TestColors()
         {
-            //FoundColorSpaces colorSpaces = ColorSpaceFinder.Find(@"C:\repos\SetSpotter\SetSpotter\SetSpotter\separatedshapes\pill\green__3f4727bfe8a147189bd3f37c6dfc7349.bmp");
-            //colorSpaces.CorrectedRGBColorSpace.Save(@"c:\users\brush\desktop\corrected.bmp"); 
+            string[] cards = Directory.GetFiles(@"labeledshapes");
 
-            //return; 
-
-
-            string[] squiggles = Directory.GetFiles(@"separatedshapes\squiggle\");
-            string[] pills = Directory.GetFiles(@"separatedshapes\pill\");
-            string[] diamonds = Directory.GetFiles(@"separatedshapes\diamonds\");
-
-            List<string> all = new List<string>();
-            all.AddRange(squiggles);
-            all.AddRange(pills);
-            all.AddRange(diamonds);
-
-            double[] redHistogram = new double[360];
-            double[] purpleHistogram = new double[360];
-            double[] greenHistogram = new double[360];
-
-            double numGreen = 0, numPurple = 0, numRed = 0;
-            foreach (string file in all)
+            foreach (string file in cards)
             {
                 string fileName = Path.GetFileName(file);
-                string color = fileName.Substring(0, fileName.IndexOf('_'));
-
-                FoundColorSpaces colorSpaces = ColorSpaceFinder.Find(file);
-                FoundBlobs foundBlobs = BlobFinder.FindLargest(colorSpaces);
-                Bitmap bmp = AxisAlignedBitmapFinder.Find(foundBlobs.Blobs[0], foundBlobs.BlobCounter, colorSpaces);
-
-                FoundBlobType foundBlobType = ShapeTypeFinder.Find(bmp, colorSpaces);
-
-                //switch (color)
-                //{
-                //    case "red":
-                //        numRed++;
-                //        for (int c = 0; c < redHistogram.Length; c++)
-                //        {
-                //            redHistogram[c] += foundBlobType.Histogram[c];
-                //        }
-                //        break;
-                //    case "green":
-                //        numGreen++;
-                //        for (int c = 0; c < greenHistogram.Length; c++)
-                //        {
-                //            greenHistogram[c] += foundBlobType.Histogram[c];
-                //        }
-                //        break;
-                //    case "purple":
-                //        numPurple++;
-                //        for (int c = 0; c < purpleHistogram.Length; c++)
-                //        {
-                //            purpleHistogram[c] += foundBlobType.Histogram[c];
-                //        }
-                //        break;
-                //}
-
-                switch (color)
-                {
-                    case "red":
-                        colorSpaces.OriginalColorSpace.Save(@"C:\users\brush\desktop\red\" + Guid.NewGuid().ToString() + ".bmp"); 
-                        //foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
-                        //colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
-                        //Assert.AreEqual(ColorTypeEnum.Red, foundBlobType.ColorType);
-                        break;
-                    case "green":
-                        colorSpaces.OriginalColorSpace.Save(@"C:\users\brush\desktop\green\" + Guid.NewGuid().ToString() + ".bmp"); 
-                        //foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
-                        //colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
-                        //Assert.AreEqual(ColorTypeEnum.Green, foundBlobType.ColorType);
-                        break;
-                    case "purple":
-                        colorSpaces.OriginalColorSpace.Save(@"C:\users\brush\desktop\purple\" + Guid.NewGuid().ToString() + ".bmp"); 
-                        //foundBlobType.StrippedBitmap.Save(@"c:\users\brush\desktop\errorStripped.bmp");
-                        //colorSpaces.OriginalColorSpace.Save(@"c:\users\brush\desktop\errorOriginal.bmp");
-                        //Assert.AreEqual(ColorTypeEnum.Purple, foundBlobType.ColorType);
-                        break;
-                }
-
-                //if (color == "turd")
-                //{
-                //    for (int c = 0; c < foundBlobType.Histogram.Length; c++)
-                //    {
-                //        //redHistogram[c] = Math.Round(redHistogram[c] / numRed);
-                //        File.AppendAllText(@"c:\users\brush\desktop\error.csv", foundBlobType.Histogram[c].ToString() + "\r\n");
-                //    }
-
-                //    //for (int c = 0; c < purpleHistogram.Length; c++)
-                //    //{
-                //    //    //purpleHistogram[c] = Math.Round(purpleHistogram[c] / numPurple);
-                //    //    File.AppendAllText(@"c:\users\brush\desktop\purple.csv", purpleHistogram[c].ToString() + "\r\n");
-                //    //}
-
-                //    //for (int c = 0; c < greenHistogram.Length; c++)
-                //    //{
-                //    //    //greenHistogram[c] = Math.Round(greenHistogram[c] / numGreen);
-                //    //    File.AppendAllText(@"c:\users\brush\desktop\green.csv", greenHistogram[c].ToString() + "\r\n");
-                //    //}
-                //}
+                string[] identifiers = fileName.Split('-').Take(3).ToArray();
             }
-
-
-
-            //File.Delete(@"C:\users\brush\desktop\test.csv");
-            //using (FileStream fs = File.OpenWrite(@"C:\users\brush\desktop\test.csv"))
-            //{
-            //    using (StreamWriter sw = new StreamWriter(fs))
-            //    {
-            //        for (int c = 0; c < histogram.Length; c++)
-            //        {
-            //            sw.WriteLine(histogram[c].ToString());
-            //        }
-            //    }
-            //}
         }
 
         [TestMethod]
